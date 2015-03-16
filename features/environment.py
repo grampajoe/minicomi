@@ -25,19 +25,18 @@ def _get_driver():
 
 def before_all(context):
     def get_browser():
-        """Only cretae a Selenium driver if we need it."""
+        """Only create a Selenium driver if we need it."""
         try:
             browser = context.browser
         except AttributeError:
             browser = context.browser = _get_driver()
         return browser
 
-    context.get_browser = get_browser
-
     context.base_url = os.environ.get(
         'MINICOMI_BASE_URL',
         'http://localhost:5000',
     )
+    context.get_browser = get_browser
 
 
 def after_scenario(context, scenario):

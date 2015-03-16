@@ -14,4 +14,4 @@ export SUPERUSER_PASSWORD=minicomi
 export SUPERUSER_EMAIL='minicomi+test@joefriedl.net'
 
 # Run integration tests
-behave
+behave -t ~@local

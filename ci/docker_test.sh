@@ -13,4 +13,6 @@ if [ -z "$DOCKER_IP" ]; then
     DOCKER_IP='127.0.0.1'
 fi
 
-MINICOMI_BASE_URL="http://$DOCKER_IP:5000" behave
+export MINICOMI_BASE_URL="http://$DOCKER_IP:5000"
+
+behave -t ~@local
