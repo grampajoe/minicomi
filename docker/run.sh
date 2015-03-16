@@ -69,10 +69,6 @@ if [ "$1" = 'start' ];
 then
     python manage.py migrate
 
-    if [ -n "$SUPERUSER_NAME" ]; then
-        python manage.py minicomi_setup
-    fi
-
     exec gunicorn \
         --workers=2 \
         --worker-class=gaiohttp \
