@@ -8,18 +8,9 @@
     "heroku-postgresql"
   ],
   "env": {
-    "DJANGO_SETTINGS_MODULE": "minicomi.settings.production",
-    "SUPERUSER_NAME": {
-        "description": "Username for the initial superuser."
-    },
-    "SUPERUSER_EMAIL": {
-        "description": "Email for the initial superuser."
-    },
-    "SUPERUSER_PASSWORD": {
-        "description": "Password for the initial superuser."
-    }
+    "DJANGO_SETTINGS_MODULE": "minicomi.settings.production"
   },
   "scripts": {
-      "postdeploy": "python manage.py migrate && python manage.py minicomi_setup"
+      "postdeploy": "python manage.py migrate"
   }
 }
