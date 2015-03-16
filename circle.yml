@@ -14,7 +14,8 @@ test:
     - coverage run --source='.' manage.py test
 
     - python manage.py migrate
-    - python manage.py runserver 2>&1 > server.log &
+    - python manage.py runserver 2>&1 > /dev/null &
+    - sleep 3
     - behave
   post:
     - coveralls
