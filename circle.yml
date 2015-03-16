@@ -1,18 +1,17 @@
 machine:
   python:
     version: 3.4.1
-  services:
-    - docker
 
 dependencies:
-  override:
-    - ci/circle_setup.sh:
-        parallel: true
+  pre:
+    - pip install -r requirements_test.txt
 
 test:
   override:
-    - ci/circle_test.sh:
-        parallel: true
+    - pep8 .
+    - coverage run --source='.' manage.py test
+
+    - python manage.py runserver 2>&1 > /dev/null &
+    - behave
   post:
-    - ci/circle_teardown.sh:
-        parallel: true
+    - coveralls

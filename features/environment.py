@@ -34,7 +34,7 @@ def before_all(context):
 
     context.base_url = os.environ.get(
         'MINICOMI_BASE_URL',
-        'http://localhost:5000',
+        'http://localhost:8000',
     )
     context.get_browser = get_browser
 
