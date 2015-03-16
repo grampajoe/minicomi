@@ -25,10 +25,12 @@ def step_impl(context, username, password, email):
     username_field = browser.find_element_by_name('username')
     password1_field = browser.find_element_by_name('password1')
     password2_field = browser.find_element_by_name('password2')
+    email_field = browser.find_element_by_name('email')
 
     username_field.send_keys(username)
     password1_field.send_keys(password)
     password2_field.send_keys(password)
+    email_field.send_keys(email)
 
     username_field.submit()
 

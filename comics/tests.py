@@ -25,6 +25,7 @@ class SetupTests(TestCase):
             'username': 'hello',
             'password1': 'friend',
             'password2': 'friend',
+            'email': 'test@test.com',
         })
 
         user = get_user_model().objects.get(username='hello')
@@ -32,12 +33,26 @@ class SetupTests(TestCase):
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
 
+    def test_saves_email(self):
+        """Should save an email address."""
+        self.client.post('/setup/', {
+            'username': 'hello',
+            'password1': 'friend',
+            'password2': 'friend',
+            'email': 'test@test.com',
+        })
+
+        user = get_user_model().objects.get(username='hello')
+
+        self.assertEqual(user.email, 'test@test.com')
+
     def test_logs_you_in(self):
         """Should log in the newly created user."""
         response = self.client.post('/setup/', {
             'username': 'hello',
             'password1': 'friend',
             'password2': 'friend',
+            'email': 'test@test.com',
         }, follow=True)
 
         self.assertTrue(response.context['user'].is_authenticated())
@@ -48,6 +63,7 @@ class SetupTests(TestCase):
             'username': 'hello',
             'password1': 'friend',
             'password2': 'friend',
+            'email': 'test@test.com',
         })
 
         self.assertRedirects(response, '/admin/')
